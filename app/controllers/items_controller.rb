@@ -10,11 +10,12 @@ class ItemsController < ApplicationController
     def index 
         if params[:search]
             @search = params[:search].singularize.downcase
-            @items = Item.where("name LIKE ? OR description LIKE ?", "%" + @search + "%", "%" + @search + "%")            
-        else  
+            @items = Item.search(@search)
+            
+        else 
             @items = Item.order(sort_column + " " + sort_direction)
             #render "items/sort"
-        end  
+        end
     end
         
     def new 
@@ -35,7 +36,8 @@ class ItemsController < ApplicationController
     def show      
     end
 
-    def edit      
+    def edit
+        current_user_item(@item)
     end
 
     def update
@@ -71,4 +73,10 @@ class ItemsController < ApplicationController
         %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
+    def current_user_item(item)
+        if !current_user.items.include?(item)
+            flash[:failure] = "Access Denied"
+            render :show
+        end
+    end 
 end
