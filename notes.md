@@ -1,48 +1,191 @@
-#MyApp/app/config/routes.rb
-get '/search' => 'pages#search', :as => 'search_page'
+`
+    <div class="ia-container">
+    <figure>
+        <img class="planet-picture" id="1" src="images/Planets/Mercury-Colored1.jpg" alt="Mercury" height="400" width="600">
+        <input type="radio" name="radio-set" checked="checked" />
+        <figcaption><span>Mercury</span></figcaption>
+        <figure>
+            <img class="planet-picture" id="2" src="images/Planets/Venus-Main3.jpg" alt="Venus" height="400" width="600">
+            <input type="radio" name="radio-set" />
+            <figcaption><span>Venus</span></figcaption>
+            <figure>
+                <img class="planet-picture" id="3" src="images/Planets/Earth-Main2.jpg" alt="Earth" height="400" width="600">
+                <input type="radio" name="radio-set" />
+                <figcaption><span>Earth</span></figcaption>
+                <figure>
+                    <img class="planet-picture" id="4" src="images/Planets/Mars-Main6.jpg" alt="Mars" height="400" width="600">
+                    <input type="radio" name="radio-set" />
+                    <figcaption><span>Mars</span></figcaption>
+                    <figure>
+                        <img class="planet-picture" id="5" src="images/Planets/Jupiter-Main.jpg" alt="Jupiter" height="400" width="600">
+                        <input type="radio" name="radio-set" />
+                        <figcaption><span>Jupiter</span></figcaption>
+                        <figure>
+                            <img class="planet-picture" id="6" src="images/Planets/Saturn-Main-Main2.jpeg" alt="Saturn" height="400" width="600">      
+                            <input type="radio" name="radio-set" />
+                            <figcaption><span>Saturn</span></figcaption>
+                            <figure>
+                                <img class="planet-picture" id="7" src="images/Planets/Uranus-Main2.jpg" alt="Uranus" height="400" width="600">
+                                <input type="radio" name="radio-set" />
+                                <figcaption><span>Uranus</span></figcaption>
+                                <figure>
+                                    <img class="planet-picture" id="8" src="images/Planets/Neptune-Main.jpg" alt="Neptune" height="400" width="600">
+                                    <input type="radio" name="radio-set" />
+                                    <figcaption><span>Neptune</span></figcaption>
+                                    <figure>
+                                        <img class="planet-picture" id="9" src="images/Planets/Pluto-Main.jpg" alt="Pluto" height="400" width="600">
+                                        <input type="radio" name="radio-set" />
+                                        <figcaption><span>Pluto</span></figcaption>
+                                    </figure>
+                                </figure>
+                            </figure>
+                        </figure>
+                    </figure>
+                </figure>
+            </figure>
+        </figure>
+    </figure>
+</div>`;
 
+.ia-container {
+	width: 1000px;
+	margin: 20px auto;
+	overflow: hidden;
+	box-shadow: 1px 1px 4px rgba(0,0,0,0.08);
+	border: 7px solid rgba(255,255,255,0.6);
+}
+.ia-container figure {
+    position: absolute;
+	top: 0;
+	left: 50px; /* width of visible piece */
+	width: 600px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.6);
+    transition: all 0.3s ease-in-out;
+}
+.ia-container > figure {
+    position: relative;
+	left: 0 !important;
+}
+.ia-container img {
+	display: block;
+	width: 100%;
+}
+.ia-container input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50px; /* just cover visible part */
+	height: 100%;
+	cursor: pointer;
+	border: 0;
+	padding: 0;
+    opacity: 0;
+	z-index: 100;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.ia-container input:checked{
+	width: 5px;
+	left: auto;
+	right: 0px;
+}
+.ia-container input:checked ~ figure {
+    left: 500px;
+    transition: all 0.7s ease-in-out;
+}
+.ia-container figcaption {
+	width: 100%;
+	height: 100%;
+	background: rgba(87, 73, 81, 0.1);
+	position: absolute;
+	top: 0px;
+    transition: all 0.2s linear;
+}
 
-#Path     
-MyApp/app/view/pages/
-#File 
-search.html.erb
-<h3>Search Result</h3>  
-    <% @results.each do |result| %>  
-        <%= result.category.name %> <%= result.name %><br>  
-    <% end %>
+.ia-container figcaption span {
+	position: absolute;
+	top: 40%;
+	margin-top: -30px;
+	right: 20px;
+	left: 20px;
+	overflow: hidden;
+	text-align: center;
+	background: rgba(87, 73, 81, 0.3);
+	line-height: 20px;
+	font-size: 18px;
+    opacity: 0;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	font-weight: 700;
+	padding: 20px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+} 
+.ia-container input:checked + figcaption,
+.ia-container input:checked:hover + figcaption{
+	background: rgba(87, 73, 81, 0);
+}
+.ia-container input:checked + figcaption span {
+    transition: all 0.4s ease-in-out 0.5s;
+	opacity: 1;
+	top: 50%;
+}
+.ia-container #ia-selector-last:checked + figcaption span {
+	transition-delay: 0.3s;
+}
+.ia-container input:hover + figcaption {
+	background: rgba(87, 73, 81, 0.03);
+}
+.ia-container input:checked ~ figure input{
+    z-index: 1;
+}
+@media screen and (max-width: 720px) {
+    .ia-container { 
+		width: 540px; 
+	}
+	
+	.ia-container figure { 
+		left: 40px; 
+		width: 260px; 
+	}
+	
+	.ia-container input { 
+		width: 40px; 
+	}
+	
+	.ia-container input:checked ~ figure { 
+		left: 260px; 
+	}
+	
+	.ia-container figcaption span { 
+		font-size: 16px; 
+	}
+}
 
+@media screen and (max-width: 520px) {
+    .ia-container { 
+		width: 320px; 
+	}
+	
+	.ia-container figure { 
+		left: 20px; 
+		width: 180px; 
+	}
+	
+	.ia-container input { 
+		width: 20px; 
+	}
+	
+	.ia-container input:checked ~ figure { 
+		left: 180px; 
+	}
+	
+	.ia-container figcaption span { 
+		font-size: 12px; 
+		letter-spacing: 2px; 
+		padding: 10px; 
+		margin-top: -20px; 
+	} 
 
-#for layout application.html.erb
-<%= form_tag(search_page_path, :method => "get",   
-    class: 'navbar-form navbar-left') do %>  
-  <div class="input-group">  
-    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
-    <div class="input-group-btn">  
-      <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
-    </div>  
-  </div>  
-<% end %>
-
-
-#MyApp/app/controllers/pages_controller.rb
-def search  
-  if params[:search].blank?  
-    redirect_to(root_path, alert: "Empty field!") and return  
-  else  
-    #@parameter = params[:search].downcase  
-    #@results = Store.all.where("lower(name) LIKE :search", search: @parameter)
-    @results = Item.joins(:category).search(params[:search]).order("categories.name DESC")  
-  end  
-end
-
-
-#MyApp/app/models/item.rb
-
-def self.search(search)  
-   where("lower(categories.name) LIKE :search OR lower(items.name) LIKE :search", search: "%#{search.downcase}%").uniq   
-end
-
-
- def self.search(search)  
-     where("lower(items.description) LIKE :search OR lower(items.name) LIKE :search", search: "%#{search.downcase}%, %#{search.downcase}%").uniq   
-end
+}
