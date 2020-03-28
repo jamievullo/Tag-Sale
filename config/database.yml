@@ -10,11 +10,8 @@
 #   timeout: 5000
 
 development:
-  # <<: *default
-  # database: db/development.sqlite3
   adapter: postgresql
   encoding: unicode
-  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: Tag-Sale_development
   pool: 5
   timeout: 5000
@@ -25,16 +22,18 @@ development:
 # test:
 #   <<: *default
 #   database: db/test.sqlite3
+
 test:
-  # <<: *default
-  # database: db/development.sqlite3
   adapter: postgresql
   encoding: unicode
-  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: Tag-Sale_test
   pool: 5
   timeout: 5000
 
-# production:
-#   <<: *default
-#   database: db/production.sqlite3
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: Tag-Sale_production
+  pool: 5
+  timeout: 5000
